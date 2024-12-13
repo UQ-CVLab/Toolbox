@@ -2,6 +2,8 @@
 
 Video pose estimation based on yolox and dwpose.
 
+See function video_pose_estimation() in video_pose_estimation.py
+
 # Installation
 1. Download and install Miniconda.
 2. Create a conda environment:
