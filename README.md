@@ -33,8 +33,7 @@ Once downloaded, move yolox weight to yolox_config folder and move dwpose weight
     video_pose_estimation(video_path, save_to_video_path=None, save_to_images_path=None,
                           batch_size_1=100, batch_size_2=150,
                           extraction_ratio=0, max_length=0):
-    
-    video pose estimation
+
     :param video_path: the path to your video
     :param save_to_video_path: the path to save the estimated video
     :param save_to_images_path: the path to save the estimated video in images
@@ -47,22 +46,6 @@ Once downloaded, move yolox weight to yolox_config folder and move dwpose weight
     :param max_length: limit the maximum video length, unit: seconds
     :return: pose sequences, bounding box list, video_meta
 
-
-## Recommended batch size
-For A100 with 80G memory, the batch size is:
-
-    batch_size_1 = 600
-    batch_size_2 = 1220
-
-For RTX4090 with 24G memory, the batch size is:
-
-    batch_size_1 = 185
-    batch_size_2 = 375
-
-For T4 with 16G memory, the batch size is:
-
-    batch_size_1 = 115
-    batch_size_2 = 240
 
 ## Pose Sequence
 
@@ -96,3 +79,20 @@ For T4 with 16G memory, the batch size is:
 - 'W': video width
 - 'channel': frame channel
 - 'seconds': video length in seconds
+
+
+## Recommended batch size
+For A100 with 80G memory, the batch size is:
+
+    batch_size_1 = 600
+    batch_size_2 = 1220
+
+For RTX4090 with 24G memory, the batch size is:
+
+    batch_size_1 = 185
+    batch_size_2 = 375
+
+For T4 with 16G memory, the batch size is:
+
+    batch_size_1 = 115
+    batch_size_2 = 240
