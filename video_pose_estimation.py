@@ -248,6 +248,9 @@ def video_batch_inference(video_path, batch_size_1, batch_size_2, extraction_rat
     N = len(video_dataset)
     H, W, C = video_dataset.get_hwc()
 
+    if extraction_ratio != 0:
+        print(f"resized videos: N: {N}, H: {H}, W: {W}, C: {C}")
+
     video_metadata = {"fps": video_fps, "frame": N,"H": H, "W": W, "channel": C, "seconds": video_dataset.get_seconds()}
     device = "cuda:0"
     dwdetector = Wholebody()
@@ -364,4 +367,7 @@ def video_pose_estimation(video_path, save_to_video_path=None, save_to_images_pa
 
 if __name__ == '__main__':
 
-    pose_sequences, bboxes_list, video_meta = video_pose_estimation("./blob_2024-07-18_11-22-28.mov", "./", "./")
+    pose_sequences, bboxes_list, video_meta = video_pose_estimation("./blob_2024-07-18_11-22-28.mov",
+                                                                    "./", "./",
+                                                                    185, 375,
+                                                                    0, 0)
