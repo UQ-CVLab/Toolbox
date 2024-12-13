@@ -32,7 +32,7 @@ class DWProcessor:
 
         self.pose_estimation = Wholebody()
 
-    def __call__(self, video_imgs, candidate_, subset_, bbox_list, vis=False):
+    def __call__(self, video_imgs, candidate_, subset_, bbox_list, vis_res):
         imgs = video_imgs.copy()
         N, H, W, C = np.array(imgs).shape
 
@@ -86,7 +86,8 @@ class DWProcessor:
             bodies = dict(candidate=body, subset=score)
             pose = dict(bodies=bodies, hands=hands, faces=faces, foot=foot)
 
-            if vis:
+            canvas = []
+            if vis_res:
                 canvas = draw_pose(pose, H, W, video_imgs[candidate_i], bbox_list[candidate_i])
             else:
                 canvas = video_imgs[candidate_i].copy()

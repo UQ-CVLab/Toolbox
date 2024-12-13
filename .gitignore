@@ -162,3 +162,8 @@ cython_debug/
 .idea/
 
 .pth
+.mov
+.MOV
+.mp4
+.jpg
+.png

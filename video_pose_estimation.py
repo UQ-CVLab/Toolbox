@@ -244,9 +244,6 @@ def demotest_save_to_images(save_path, detected_images, H, W, folder_name):
 def video_batch_inference(video_path, batch_size_1, batch_size_2, extraction_ratio, max_length, vis_res):
 
     video_dataset = VideoDataset(video_path, extraction_ratio, max_length)
-    # video_images = video_dataset.get_video_frames()  # [N, H, W, C]
-
-    # video_images = [video_images]  # used for single image
     video_fps = video_dataset.get_fps()
     N = len(video_dataset)
     H, W, C = video_dataset.get_hwc()
@@ -329,9 +326,12 @@ def video_pose_estimation(video_path, save_to_video_path=None, save_to_images_pa
     :param save_to_images_path: the path to save the estimated video in images
     :param batch_size_1: batch size for human detection
     :param batch_size_2: batch size for pose estimation
-    :param extraction_ratio:
-    :param max_length:
-    :return:
+    :param extraction_ratio: an integer number x representing the extraction ratio.
+    Positive: extract 1 frame for each x frames.
+    Negative: extract x frames for each frame.
+    Can not be 1. Default is 0.
+    :param max_length: limit the maximum video length, unit: seconds
+    :return: pose sequences, bounding box list, video_meta
     """
 
     check_cuda()
@@ -345,6 +345,9 @@ def video_pose_estimation(video_path, save_to_video_path=None, save_to_images_pa
     if (save_to_video_path is not None) or (save_to_images_path is not None):
         vis_res = True
 
+    # it can not be 1
+    assert extraction_ratio != 1, "extraction ratio can not be 1"
+
     detected_frames, pose_sequences, bboxes_list, video_meta = video_batch_inference(video_path,
                                                                                      batch_size_1, batch_size_2,
                                                                                      extraction_ratio, max_length,
@@ -356,9 +359,9 @@ def video_pose_estimation(video_path, save_to_video_path=None, save_to_images_pa
     if save_to_images_path is not None:
         demotest_save_to_images(save_to_images_path, detected_frames, video_meta["H"], video_meta['W'], video_name)
 
-    return pose_sequences, bboxes_list
+    return pose_sequences, bboxes_list, video_meta
 
 
 if __name__ == '__main__':
 
-    pose_sequences, bboxes_list = video_pose_estimation("./blob_2024-07-18_11-22-28.mov", "./", "./")
+    pose_sequences, bboxes_list, video_meta = video_pose_estimation("./blob_2024-07-18_11-22-28.mov", "./", "./")
