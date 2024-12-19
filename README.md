@@ -28,7 +28,7 @@ Yolox: https://download.openmmlab.com/mmdetection/v2.0/yolox/yolox_l_8x8_300e_co
 
 DWPose: https://huggingface.co/yzd-v/DWPose/blob/main/dw-ll_ucoco_384.pth
 
-Once downloaded, move yolox weight to yolox_config folder and move dwpose weight to dwpose_config folder.
+Once downloaded, move yolox weight to DWPose_usage/yolox_config folder and move dwpose weight to DWPose_usage/dwpose_config folder.
 
 
 # Function Details
