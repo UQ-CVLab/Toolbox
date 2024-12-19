@@ -100,3 +100,6 @@ For T4 with 16G memory, the batch size is:
 
     batch_size_1 = 115
     batch_size_2 = 240
+
+# Contact
+If you have any questions, please feel free to contact the author: tianchen.guo@uq.edu.au
