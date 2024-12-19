@@ -52,13 +52,15 @@ Once downloaded, move yolox weight to yolox_config folder and move dwpose weight
 ## Pose Sequence
 
 - Shape: a list with dimension of (N, 406), N is the number of frames, and 406 = 7 + 133 * 3
-- First 7 elements: [0, 0, x1, y1, x2, y2, c]. (x1, y1) is the 
+- First 7 elements (index from 0 to 6): [0, 0, x1, y1, x2, y2, c]. (x1, y1) is the 
   top left corner. (x2, y2) is bottom right corner. c is the confidence
   score of the bounding box for current frame.
 - For the other element: [x1, y1, c1, x2, y2, c2, ...] for each key point, it has x coordinate,
   y coordinate and its confidence score. 
-- For the details of key point name and position, please refer to https://github.com/jin-s13/COCO-WholeBody?tab=readme-ov-file#what-is-coco-wholebody
-- For xth key point, its corresponding element indexes are (3x+4, 3x+5, 3x+6)
+- For the details of key point name and position (coco format), please refer to https://github.com/jin-s13/COCO-WholeBody?tab=readme-ov-file#what-is-coco-wholebody
+- For xth key point, its corresponding element indexes are (3x+4, 3x+5, 3x+6).
+  Note: x means the xth key point in the [link](https://github.com/jin-s13/COCO-WholeBody/blob/master/imgs/Fig2_anno.png), start from 1 and end to 133. The index of pose sequence
+  starts from 0. So the index in pose sequence of the first key point, which is nose, is [7, 8, 9].
 
 
 ## Bounding Box 
