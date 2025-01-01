@@ -122,11 +122,6 @@ class VideoDataset(Dataset):
             if not success:
                 break
 
-            # convert 60 fps to 30 fps
-            if self.fps > 55:
-                if count % 2 == 0:
-                    continue
-
             # Apply frame extraction logic
             if frame_extraction_ratio < 0:
                 # extract i frames for each 1 frame
